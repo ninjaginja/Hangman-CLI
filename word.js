@@ -7,10 +7,10 @@ var Word = function(answer) {
   this.splitWord = this.answer.split("");
 }
 
-var newGame = new Game().selectedAnswer;
-var wordUp = new Word(newGame);
-var wordArray = wordUp.splitWord;
-console.log(wordArray);
+// var newGame = new Game().selectedAnswer;
+// var wordUp = new Word(newGame);
+// var letterArray = wordUp.splitWord;
+// console.log(letterArray);
 
 
 // Make available for use in other files
