@@ -8,8 +8,7 @@ var Letter = function(letterArray) {
   this.letterArray = letterArray;
 
   this.putPlaceholders = function() {
-    // For each loop to circle through letters:
-
+    // For each loop to cycle through letters:
     var placeholderString = "";
     letterArray.forEach(function(element){
       if (element != " ") {
@@ -21,15 +20,16 @@ var Letter = function(letterArray) {
     console.log(placeholderString);
 
   }
-
 }
 
-var newGame = new Game().selectedAnswer;
-var wordUp = new Word(newGame);
-var letterArray = wordUp.splitWord;
-// console.log(letterArray);
+// FOR TESTING ---------------------------------
+// var newGame = new Game().selectedAnswer;
+// var wordUp = new Word(newGame);
+// var letterArray = wordUp.splitWord;
+//
+//
+// var newLetters = new Letter(letterArray);
+// newLetters.putPlaceholders();
 
 
-
-var newLetters = new Letter(letterArray);
-newLetters.putPlaceholders();
+module.exports = Letter;

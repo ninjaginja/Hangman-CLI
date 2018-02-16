@@ -7,11 +7,12 @@ var Word = function(answer) {
   this.splitWord = this.answer.split("");
 }
 
+
+// FOR TESTING ----------------------------
 // var newGame = new Game().selectedAnswer;
 // var wordUp = new Word(newGame);
 // var letterArray = wordUp.splitWord;
 // console.log(letterArray);
 
 
-// Make available for use in other files
 module.exports = Word;
