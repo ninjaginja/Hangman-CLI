@@ -8,12 +8,10 @@ var Letter = require('./letter');
 
 // Set userGuesses equal to 10
 var userGuesses = 10;
-var isLetterInWord = false;
 var blanksAndSuccesses = [];
 var wrongLetters = [];
-
-// Holds string of guessed letters and placeholders
-var displayString = "";
+var gameLetterArray = [];
+var numBlanks = 0;
 
 
 // FUNCTIONS -----------------------------------------------
@@ -32,7 +30,7 @@ function startGame() {
   gameLetterArray = newLetters.letterArray;
   // console.log(gameLetterArray);
 
-  var numBlanks = gameLetterArray.length;
+  numBlanks = gameLetterArray.length;
   // console.log(numBlanks);
 
   // Reset
@@ -50,7 +48,7 @@ function startGame() {
 
 
 // Request user input and compare to gameLetterArray
-function compareLetters(letter){
+function compareLetters(){
   var isLetterInWord = false;
   inquirer.prompt([
     {
@@ -59,40 +57,34 @@ function compareLetters(letter){
     message: "? Guess a letter."
     }
   ]).then(function(answer){
+      var isLetterInWord = false;
       for (var i = 0; i < numBlanks; i++) {
         if (answer.letter.toUpperCase() === gameLetterArray[i].toUpperCase()) {
           isLetterInWord = true;
-          // displayString += gameLetterArray[i];
-          // compareLetters();
         }
       }
-        if(isLetterInWord) {
-          for (var i = 0; i < numBlanks; i++) {
-            if (answer.letter.toUpperCase() === gameLetterArray[i].toUpperCase()) {
-              blanksAndSuccesses[i] = answer.letter;
-              console.log(blanksAndSuccesses);
-            }
+
+      if(isLetterInWord == true) {
+        for (var i = 0; i < numBlanks; i++) {
+          if (answer.letter.toUpperCase() === gameLetterArray[i].toUpperCase()) {
+            blanksAndSuccesses[i] = answer.letter;
+            console.log(blanksAndSuccesses.join(" "));
+            compareLetters();
           }
         }
-        else {
-          wrongLetters.push(answer.letter);
-          userGuesses--;
-          console.log(wrongLetters);
-        }
 
-        //
-        //  else if (gameLetterArray[i] === " ") {
-        //   displayString += " ";
-        // } else {
-        //   displayString += "_";
-        //   userGuesses--;
-        // }
-
-      console.log(displayString);
-
-
+      }
+      else {
+        wrongLetters.push(answer.letter);
+        userGuesses--;
+        console.log("WrongLetters: " + wrongLetters);
+        compareLetters();
+      }
   });
 }
 
 // RUN GAME ----------------------------------------------
 startGame();
+console.log(gameLetterArray);
+
+compareLetters();
