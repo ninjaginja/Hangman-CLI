@@ -15,9 +15,15 @@ var numBlanks = 0;
 
 // FUNCTIONS -----------------------------------------------
 function startGame() {
+
+  // Reset
+  userGuesses = 10;
+  blanksAndSuccesses = [];
+  wrongLetters = [];
+
   // Get random word from answer array using Game constructor
   var newGame = new Game().selectedAnswer;
-  console.log(newGame);
+  // console.log(newGame);
 
   // Split selected answer into separate letters in an array using Word Constructor
   var wordUp = new Word(newGame);
@@ -31,11 +37,6 @@ function startGame() {
 
   numBlanks = gameLetterArray.length;
   // console.log(numBlanks);
-
-  // Reset
-  var userGuesses = 10;
-  var blanksAndSuccesses = [];
-  var wrongLetters = [];
 
   // Populate '_' for all letters in selected word
   for (var i = 0; i < numBlanks; i++) {
