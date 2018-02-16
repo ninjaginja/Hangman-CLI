@@ -6,7 +6,6 @@ var Letter = require('./letter');
 
 // GLOBAL VARIABLES ---------------------------------------------
 
-// Set userGuesses equal to 10
 var userGuesses = 10;
 var blanksAndSuccesses = [];
 var wrongLetters = [];
@@ -43,7 +42,6 @@ function startGame() {
     blanksAndSuccesses.push("_");
   }
   console.log(blanksAndSuccesses.join(" "));
-
 }
 
 
@@ -87,4 +85,12 @@ function compareLetters(){
 startGame();
 console.log(gameLetterArray);
 
-compareLetters();
+if (userGuesses > 0 && gameLetterArray != blanksAndSuccesses) {
+  compareLetters();
+} else if (userGuesses > 0 && gameLetterArray === blanksAndSuccesses) {
+  console.log("Congratulations! You won!");
+  startGame();
+} else {
+  console.log("Boooo! You lost. Here's another shot at it.");
+  startGame();
+}
