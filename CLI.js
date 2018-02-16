@@ -67,16 +67,17 @@ function compareLetters(){
         for (var i = 0; i < numBlanks; i++) {
           if (answer.letter.toUpperCase() === gameLetterArray[i].toUpperCase()) {
             blanksAndSuccesses[i] = answer.letter;
-            console.log(blanksAndSuccesses.join(" "));
-            compareLetters();
           }
         }
+        console.log("CORRECT! " + blanksAndSuccesses.join(" "));
+        compareLetters();
 
       }
       else {
         wrongLetters.push(answer.letter);
         userGuesses--;
-        console.log("WrongLetters: " + wrongLetters);
+        console.log("NOPE! You're incorrect guesses include: " + wrongLetters);
+        console.log(blanksAndSuccesses.join(" "));
         compareLetters();
       }
   });
@@ -84,14 +85,18 @@ function compareLetters(){
 
 // RUN GAME ----------------------------------------------
 startGame();
+
+// For testing/debugging
 console.log(gameLetterArray);
 
 if (userGuesses > 0 && gameLetterArray != blanksAndSuccesses) {
   compareLetters();
-} else if (userGuesses > 0 && gameLetterArray === blanksAndSuccesses) {
+}
+else if (userGuesses > 0 && gameLetterArray === blanksAndSuccesses) {
   console.log("Congratulations! You won!");
   startGame();
-} else {
+}
+else {
   console.log("Boooo! You lost. Here's another shot at it.");
   startGame();
 }
