@@ -56,6 +56,7 @@ function compareLetters(){
     message: "? Guess a letter."
     }
   ]).then(function(answer){
+
       var isLetterInWord = false;
       for (var i = 0; i < numBlanks; i++) {
         if (answer.letter.toUpperCase() === gameLetterArray[i].toUpperCase()) {
@@ -70,33 +71,63 @@ function compareLetters(){
           }
         }
         console.log("CORRECT! " + blanksAndSuccesses.join(" "));
+        console.log("gameLetterArray: " + gameLetterArray.join(" "));
+        console.log("blanksAndSuccesses: " + blanksAndSuccesses.join(" "));
         compareLetters();
+
+        var gameLetterString = gameLetterArray.join("");
+        var finalString = blanksAndSuccesses.join("");
+
+        console.log(gameLetterArray);
+        console.log(finalString);
+
+
+
+        if (gameLetterString == finalString) {
+          console.log("Congratulations! You won! Here's your new word.");
+          startGame();
+          compareLetters();
+        }
 
       }
       else {
         wrongLetters.push(answer.letter);
         userGuesses--;
-        console.log("NOPE! You're incorrect guesses include: " + wrongLetters);
+        console.log("NOPE! " + userGuesses + " guesses remaining.");
         console.log(blanksAndSuccesses.join(" "));
-        compareLetters();
+
+
+        if(userGuesses > 0){
+          compareLetters();
+        } else{
+          console.log("Boooo! You lost. Here's another shot at it.");
+          startGame();
+          compareLetters();
+        }
+
       }
+
+
+
   });
 }
 
 // RUN GAME ----------------------------------------------
 startGame();
 
+compareLetters();
+
 // For testing/debugging
 console.log(gameLetterArray);
 
-if (userGuesses > 0 && gameLetterArray != blanksAndSuccesses) {
-  compareLetters();
-}
-else if (userGuesses > 0 && gameLetterArray === blanksAndSuccesses) {
-  console.log("Congratulations! You won!");
-  startGame();
-}
-else {
-  console.log("Boooo! You lost. Here's another shot at it.");
-  startGame();
-}
+// if (userGuesses > 0 && gameLetterArray != blanksAndSuccesses) {
+//
+// }
+// else if (userGuesses > 0 && gameLetterArray == blanksAndSuccesses) {
+//   console.log("Congratulations! You won! Here's your new word.");
+//   startGame();
+// }
+// else if (userGuesses = 0){
+//   console.log("Boooo! You lost. Here's another shot at it.");
+//   startGame();
+// }
