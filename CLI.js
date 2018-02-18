@@ -42,7 +42,7 @@ function startGame() {
   for (var i = 0; i < numBlanks; i++) {
     blanksAndSuccesses.push("_");
   }
-  console.log(blanksAndSuccesses.join(" "));
+  console.log('\x1b[36m%s\x1b[0m', blanksAndSuccesses.join(" "));
 }
 
 
@@ -70,21 +70,18 @@ function compareLetters(){
             blanksAndSuccesses[i] = answer.letter;
           }
         }
-        console.log("CORRECT! " + blanksAndSuccesses.join(" "));
-        console.log("gameLetterArray: " + gameLetterArray.join(" "));
-        console.log("blanksAndSuccesses: " + blanksAndSuccesses.join(" "));
+        console.log("\x1b[32m%s\x1b[0m", "CORRECT!");
+        console.log('\x1b[36m%s\x1b[0m', blanksAndSuccesses.join(" "));
         compareLetters();
 
         var gameLetterString = gameLetterArray.join("");
         var finalString = blanksAndSuccesses.join("");
 
-        console.log(gameLetterArray);
-        console.log(finalString);
-
-
+        // console.log(gameLetterArray);
+        // console.log(finalString);
 
         if (gameLetterString == finalString) {
-          console.log("Congratulations! You won! Here's your new word.");
+          console.log("\x1b[32m%s\x1b[0m", "Congratulations! You won! Here's your new word.");
           startGame();
           compareLetters();
         }
@@ -93,21 +90,19 @@ function compareLetters(){
       else {
         wrongLetters.push(answer.letter);
         userGuesses--;
-        console.log("NOPE! " + userGuesses + " guesses remaining.");
-        console.log(blanksAndSuccesses.join(" "));
+        console.log("\x1b[31m", "NOPE! " + userGuesses + " guesses remaining.", "\x1b[0m");
+        console.log('\x1b[36m%s\x1b[0m', blanksAndSuccesses.join(" "));
 
 
         if(userGuesses > 0){
           compareLetters();
         } else{
-          console.log("Boooo! You lost. Here's another shot at it.");
+          console.log("\x1b[31m%s\x1b[0m", "Boooo! You lost. Here's another shot at it.");
           startGame();
           compareLetters();
         }
 
       }
-
-
 
   });
 }
@@ -118,16 +113,4 @@ startGame();
 compareLetters();
 
 // For testing/debugging
-console.log(gameLetterArray);
-
-// if (userGuesses > 0 && gameLetterArray != blanksAndSuccesses) {
-//
-// }
-// else if (userGuesses > 0 && gameLetterArray == blanksAndSuccesses) {
-//   console.log("Congratulations! You won! Here's your new word.");
-//   startGame();
-// }
-// else if (userGuesses = 0){
-//   console.log("Boooo! You lost. Here's another shot at it.");
-//   startGame();
-// }
+// console.log(gameLetterArray);
